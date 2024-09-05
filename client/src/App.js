@@ -2,10 +2,6 @@ import { useState } from 'react';
 import botAvatar from './images/bb8.webp'; // Import the bot image
 import userAvatar from './images/user.png'; // Import the user image
 
-const url =
-  process.env.NODE_ENV === 'production'
-    ? 'https://course-tools-demo.onrender.com/'
-    : 'http://127.0.0.1:8000/';
 
 function App() {
   const [message, setMessage] = useState('');
