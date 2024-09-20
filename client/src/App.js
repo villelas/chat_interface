@@ -2,7 +2,6 @@ import { useState } from 'react';
 import botAvatar from './images/bb8.webp'; // Import the bot image
 import userAvatar from './images/user.png'; // Import the user image
 
-
 function App() {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
@@ -31,18 +30,36 @@ function App() {
     return combinedHistory;
   }
 
-  function sendMessage() {
+  async function sendMessage() {
     if (message === '') {
       return;
     }
 
     const userMessage = { type: 'user', content: message };
-    setChatHistory((prev) => {
-      const updatedHistory = [...prev, userMessage];
-      const botResponse = { type: 'bot', content: 'Sorry, I do not have an answer at the moment.' };
-      updatedHistory.push(botResponse);
-      return limitMessages(updatedHistory);
-    });
+    setChatHistory((prev) => [...prev, userMessage]);
+
+    // Send the message to the backend
+    try {
+      const response = await fetch('http://localhost:8000/query', { // Update the URL if needed
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: message }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      const botResponse = { type: 'bot', content: data.response };
+      setChatHistory((prev) => limitMessages([...prev, botResponse]));
+    } catch (error) {
+      console.error('Error:', error);
+      const errorResponse = { type: 'bot', content: 'Error occurred while contacting the server.' };
+      setChatHistory((prev) => limitMessages([...prev, errorResponse]));
+    }
 
     setMessage('');
   }
@@ -50,7 +67,7 @@ function App() {
   return (
     <div className="flex flex-col justify-between items-center min-h-screen p-5 bg-base-200">
       <h1 className="text-4xl font-bold mt-10 text-primary absolute top-5 left-5">
-        AI Chatbot: 
+        AI Chatbot:
       </h1>
       <div className="flex flex-col w-full max-w-lg mb-10">
         <div className="flex gap-2 justify-center items-end">
@@ -106,4 +123,3 @@ function App() {
 }
 
 export default App;
-
