@@ -6,14 +6,12 @@ from pydantic import BaseModel
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
+import os
+
 
 # Load environment variables from .env file
 load_dotenv()
-
 app = FastAPI()
-
-# Mount the static directory
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Configure CORS
 app.add_middleware(
@@ -24,12 +22,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load OpenAI API key from environment variable
-client = OpenAI(
-    # This is the default and can be omitted
-    api_key=os.environ.get("OPENAI_API_KEY"),
-)
 
+client = OpenAI(
+    api_key="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")
 # Define request and response models
 class QueryRequest(BaseModel):
     prompt: str
@@ -43,17 +38,17 @@ class QueryResponse(BaseModel):
 async def query_openai(request: QueryRequest):
     try:
         # Set your OpenAI API key
-        
+
 
         # Call the OpenAI API via LangChain
         chat_completion = client.chat.completions.create(
             messages=[
                 {
                     "role": "user",
-                    "content": "Say this is a test",
+                    "content": request.prompt,
                 }
             ],
-            model="gpt-3.5-turbo",
+            model="gpt-4o-mini",
         )
 
         return QueryResponse(response=chat_completion.choices[0].message.content)
@@ -63,4 +58,4 @@ async def query_openai(request: QueryRequest):
 # Root endpoint
 @app.get("/")
 async def read_root():
-    return FileResponse('static/index.html')
+    return FileResponse('client/build/index.html')
