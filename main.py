@@ -24,7 +24,7 @@ app.add_middleware(
 
 
 client = OpenAI(
-    api_key="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")
+    api_key=")
 # Define request and response models
 class QueryRequest(BaseModel):
     prompt: str
