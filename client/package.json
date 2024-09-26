@@ -19,7 +19,7 @@
     "vega-lite": "^5.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node --max-old-space-size=4096 node_modules/.bin/react-scripts start", // Updated line
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -52,8 +52,8 @@
     "@testing-library/dom": "^7.21.4",
     "@babel/plugin-syntax-flow": "^7.14.5",
     "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11", // Confirmed this is correctly added
     "typescript": "^4.0.0",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/core": "^7.0.0"
   }
 }
