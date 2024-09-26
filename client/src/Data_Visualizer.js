@@ -29,7 +29,7 @@ const DataVisualizer = ({ setCsvData }) => {
         formData.append('file', uploadedFile);
 
         try {
-          const response = await fetch('http://localhost:8000/upload-csv', {
+          const response = await fetch('https://chat-interface-9y9w.onrender.com/upload-csv', {
             method: 'POST',
             body: formData,
           });
