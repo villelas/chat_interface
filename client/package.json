@@ -14,15 +14,14 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-  "start": "react-scripts start", 
-  "build": "react-scripts build",   
-  "test": "react-scripts test",    
-  "eject": "react-scripts eject",   
-  "predeploy": "npm run build",       
-  "deploy": "gh-pages -b master -d build" 
+    "start": "react-scripts start", 
+    "build": "react-scripts build",   
+    "test": "react-scripts test",    
+    "eject": "react-scripts eject",   
+    "predeploy": "npm run build",       
+    "deploy": "gh-pages -b master -d build" 
   },
-
-"eslintConfig": {
+  "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
@@ -44,6 +43,10 @@
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.10",
     "postcss": "^8.4.44",
-    "tailwindcss": "^3.4.10"
+    "tailwindcss": "^3.4.10",
+    "@testing-library/dom": "^7.21.4",  // Added dependency
+    "@babel/plugin-syntax-flow": "^7.14.5", // Added dependency
+    "@babel/plugin-transform-react-jsx": "^7.14.9", // Added dependency
+    "typescript": "^4.0.0" // Added dependency
   }
 }
