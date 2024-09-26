@@ -19,7 +19,7 @@
     "vega-lite": "^5.0.0"
   },
   "scripts": {
-    "start": "node --max-old-space-size=8192 node_modules/.bin/react-scripts start",
+     "start": "PORT=8000 node --max-old-space-size=8192 node_modules/.bin/react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
