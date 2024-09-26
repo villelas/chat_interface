@@ -4,7 +4,6 @@ import * as d3 from 'd3-dsv';
 const DataVisualizer = ({ setCsvData }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState('');
-  const [data, setData] = useState(null);
   const [previewData, setPreviewData] = useState([]);
   const [showData, setShowData] = useState(false);
   const [isDragging, setIsDragging] = useState(false); // For drag-and-drop feedback
@@ -19,8 +18,7 @@ const DataVisualizer = ({ setCsvData }) => {
         const csvText = event.target.result;
         const parsedData = d3.csvParse(csvText, d3.autoType);
 
-        setData(parsedData);
-        setCsvData(parsedData);
+        setCsvData(parsedData); // Only set the parsed data to the parent
 
         const preview = parsedData.slice(0, 10);
         setPreviewData(preview);
@@ -51,7 +49,6 @@ const DataVisualizer = ({ setCsvData }) => {
     } else {
       setError('Only CSV files are allowed.');
       setFile(null);
-      setData(null);
       setPreviewData([]);
     }
   };
