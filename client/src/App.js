@@ -57,7 +57,7 @@ function App() {
         return;
       }
 
-      const response = await fetch('http://localhost:8000/query', {
+      const response = await fetch('https://chat-interface-9y9w.onrender.com/query', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
