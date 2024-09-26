@@ -12,3 +12,18 @@ python-dotenv==1.0.1
 
 starlette==0.38.2
 uvicorn==0.30.6
+
+fastapi==0.95.2
+uvicorn==0.22.0
+pandas==2.0.3
+openai==0.27.0
+pydantic==1.10.7
+python-dotenv==1.0.0
+
+# React dependencies (if needed, can be separated)
+# react==18.2.0
+# react-dom==18.2.0
+# d3-dsv==3.0.1
+# react-vega==5.0.1
+# tailwindcss==3.2.7
+
